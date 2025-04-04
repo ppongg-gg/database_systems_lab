@@ -1,0 +1,1 @@
+SELECT pid, pname, fn_currency(salary, 35.00, 'USD') AS salaryUSD FROM Professor
