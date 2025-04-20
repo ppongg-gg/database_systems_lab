@@ -18,7 +18,7 @@ BEGIN
     SET c.point = c.point + 66 * cic.invoice_count;
     
     INSERT INTO System_log (remark, System_date)
-    SELECT CONCAT(c.cusID, 'points increase to ', point), DAY(NOW())
+    SELECT CONCAT(c.cusID, 'points increase to ', point), DATE(NOW())
     FROM Customer c
     JOIN cus_invoice_counts cic ON c.cusID = cic.cusID;
 	
