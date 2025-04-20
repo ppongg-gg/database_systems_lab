@@ -16,6 +16,9 @@ BEGIN
             )
         )
     );
+    IF result IS NULL THEN
+	SET result = 0;
+    END IF;
     RETURN result; 
 END $$ 
 DELIMITER ;
