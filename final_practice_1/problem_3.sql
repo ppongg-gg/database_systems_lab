@@ -1,0 +1,21 @@
+DELIMITER $$ 
+CREATE FUNCTION calculate_cost(n varchar(150))
+RETURNS double DETERMINISTIC 
+BEGIN 
+	DECLARE result double; 
+    SET result = (
+		SELECT SUM(salePrice - discount)
+        FROM invoice_item 
+        WHERE invoiceID IN (
+			SELECT invoiceID
+            FROM invoice
+            WHERE empID =  (
+				SELECT empID
+                FROM Employee
+                WHERE empName = n
+            )
+        )
+    );
+    RETURN result; 
+END $$ 
+DELIMITER ;
